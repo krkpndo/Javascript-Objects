@@ -256,8 +256,15 @@
     //     duration: '3:30',
     // };
 
-    // song.composer = 'Taylor Swift';
+    // const newSong = Object.create(song);
+    // newSong.title = "Cardigan";
+    // newSong.album = "Eme";
+    // newSong.singer = "Anselle";
+    // newSong.duration = '3:29';
+
     // console.log(song);
+    // console.log(newSong);
+    
 
 /*
 3. Refer from the array below:
@@ -311,13 +318,11 @@ Create a new object with brand, model, and color properties. And replace the car
     // const newCar = {
     //     brand: "Mitsubishi",
     //     model: "Lancer",
-    //     color: "Red"
+    //     color: "Red",
+    //     transmission: "Automatic"
     // };
 
-    // car.brand = newCar.brand;
-    // car.model = newCar.model;
-    // car.color = newCar.color;
-
+    // Object.assign(car, newCar)
     // console.log(car);
 
 
@@ -407,6 +412,7 @@ Access any property using dot notation, bracket notation.
 /*
 7. Create a user method that will display the user's stats.
 */
+
     // const user = {
     //     username: "skywalker_42",
     //     stats: {
@@ -414,16 +420,13 @@ Access any property using dot notation, bracket notation.
     //         followersCount: 892,
     //         followingCount: 341
     //     },
+    // }
 
-    //     showStats: function() {
-    //         console.log("Posts: " + this.stats.postsCount);
-    //         console.log("Followers: " + this.stats.followersCount);
-    //         console.log("Following: " + this.stats.followingCount);
-    //     }
-    // };
+    // user.displayStat = function display() {
+    //     return `Post Count: ${this.stats.postsCount}\nFollowers: ${this.stats.followersCount}\nFollowing: ${this.stats.followingCount}`;
+    // }
 
-    // user.showStats();
-    // console.log(user);
+    // console.log(user.displayStat());
     
 /*
 8. Delete any property from the user object.
@@ -439,7 +442,7 @@ Access any property using dot notation, bracket notation.
     // console.log(user);
 
 /*
-9. Create an pokemon object, with type, name, level, and hp properties. Create an instance of this object.
+9. Create a pokemon object, with type, name, level, and hp properties. Create an instance of this object.
 */
 
     // function Pokemon(type, name, level, hp) {
@@ -456,20 +459,34 @@ Access any property using dot notation, bracket notation.
 10. Create any method (siguro special attack na lang) of the instance of the pokemon object.
 */
 
-    // function Pokemon(type, name, level, hp) {
+    // function Pokemon(type, name, level, hp, skill) {
     //     this.type = type;
     //     this.name = name;
     //     this.level = level;
     //     this.hp = hp;
-
-    //     this.specialAttack = function() {
-    //         console.log(this.name + " used Thunderbolt");
-    //     };
+    //     this.skill = skill;
     // }
 
-    // const pikachu = new Pokemon("Electric", "Pikachu", 15, 120);
-    // pikachu.specialAttack();
-    // console.log(pikachu);
+    // const pikachu = new Pokemon("Electric", "Pikachu", 15, 120, function specialAttack () { return `${this.name} used Thunderbolt`; });
+
+    // const pikachu = new Pokemon("Electric", "Pikachu", 15, 120, 'Thunderbolt');
+
+    // console.log(pikachu.skill);
+
+
+    // function Animal (type, color, habitat, sound) {
+    //     this.type = type,
+    //     this.color = color,
+    //     this.habitat = habitat,
+    //     this.sound = sound
+    // }
+
+    // const bulbasaur = new Pokemon('Grass', 'Bulbasaur', 1, 100);
+    // bulbasaur.specialAttack = function special () {
+    //     return `${this.name} used Vine Whip`;
+    // }
+
+    // console.log(bulbasaur.specialAttack());
     
 /*
 11. Using a for loop, display all the values of the object below:
@@ -529,9 +546,548 @@ const pokemon = {
 /*
 13. What is JSON? Explain JSON.stringify() and JSON.parse(). :P
 
-hahahhahahahahhahaha hindi pa nadidiscuss!!
+hahahhahahahahhahaha hindi pa nadidiscuss!!???
 */
 
 /* The JSON o JavaScript Object Notation ay madali siya parang i-read, ni programmer at computer. Moreover, si JSON.stringify() naman is para gawing string 
 ang isang object, parang sinasabi mo, “Okay, ready na ’to ma-translate into mareread na niya” then JSON.parse() ay the opposite, kasi ginagawa niyang object ulit 
-yung JSON string para magamit back to normal, na more understandable sa code mismo. HHEHEHEHHE */
+yung JSON string para magamit back to normal, na more understandable sa code mismo. HHEHEHEHHE */ // <3
+
+
+
+// const song = [
+//     {title: 'the 1'},
+//     {album: 'Folklore'},
+//     {singer: 'Taylor Swift'},
+//     {duration: '3:30'},
+// ];
+
+// const song = {
+//     title: 'the 1',
+//     album: 'Folklore',
+//     singer: 'Taylor Swift',
+//     duration: '3:30',
+// }
+
+/*
+    Object Destructuring
+    Example:
+    const { title, album, singer, duration } = song;
+    const [ title, album, singer, duration ] = song;
+
+    console.log(Object.values(title));
+    console.log(album);
+    console.log(singer);
+    console.log(duration);
+
+    Object Default Values
+    Example: const { title, album, singer, duration, composer = 'Taylor Swift' } = song;
+
+
+    Object Property Alias
+    Example:
+    const { title, album, singer : composer, duration } = song;
+    console.log(singer);
+    console.log(composer);
+
+
+    String Destructuring
+    Example:
+    let word = "W3Schools";
+    let [a1, a2, a3, a4, a5] = word;
+    console.log(a1);
+
+
+    Skipping Array Values
+    Example:
+    const fruits = ["Bananas", "Oranges", "Apples", "Mangoes"];
+    let [fruit1,,,fruit2] = fruits;
+    console.log(fruit1);
+    console.log(fruit2);
+
+    
+    Spread Operator
+    Eample:
+    const fruits = ["Bananas", "Oranges", "Apples", "Mangoes"];
+    const subfruits = [...fruits, 'Pineapple'];
+    console.log(subfruits);
+
+
+    The Rest Property
+    Example:
+    const numbers = [10, 20, 30, 40, 50, 60, 70];
+    const [a,b, ...rest] = numbers
+    console.log(rest);
+
+
+    Swapping JavaScript Variables
+    let firstName = "John";
+    let lastName = "Doe";
+    [firstName, lastName] = [lastName, firstName];
+
+
+    Array Position Values
+    const fruits = ["Bananas", "Oranges", "Apples", "Mangos"];
+
+    let {[0]:fruit1 ,[1]:fruit2} = fruits;
+
+    console.log(fruit1);
+
+    const data = [
+        {
+            fname: 'Juan',
+            lname: 'Tamad',
+            address: {
+                street: 'Lopez St.',
+                city: 'Batangas',
+            }
+        },
+        'Some Random Stirng',
+        100,
+        true,
+        [ 'Kahit ano', 2]
+    ];
+
+    let { [0]:elem1, [1]: elem2, [2]: elem3, [3]: elem4, [4]: elem5 } = data;
+
+    console.log(data[0]);
+    console.log(data[4][0]);
+    console.log(elem1);
+    console.log(elem5[0]);
+
+*/
+
+// The JavaScript prototype property also allows you to add new methods to objects constructors:
+
+// function Person(first, last, age, eyecolor) {
+//   this.firstName = first;
+//   this.lastName = last;
+//   this.age = age;
+//   this.eyeColor = eyecolor;
+//   this.greet = function () {
+//     return `Hi, I am ${this.firstName} ${this.lastName}`
+//   }
+// }
+
+// Person.prototype.greet = function () {
+//     return `Hi, I am ${this.firstName} ${this.lastName}`
+// }
+
+// const person = new Person('Juan', 'Tamad', 15, 'Black');
+
+// // person.greet = function greet() {
+// //     return `Hi, I am ${this.firstName} ${this.lastName}`
+// // }
+
+// console.log(person.greet());
+
+// const person = {
+//     firstName: "John",
+//     lastName : "Doe",
+//     language : "EN"
+//   };
+
+//   person.year = '2008';
+
+//   console.log(person);
+  
+/*
+
+    Getters
+    const person = {
+        firstName: "John",
+        lastName: "Doe",
+        language: "en",
+        get lang() {
+            return `The language is ${this.language}`;
+        },
+        get name() {
+            return this.firstName;
+        }
+    };
+
+    console.log(person.lang);
+    console.log(person.name);
+    
+
+    Setter
+    const car = {
+        brand: 'Toyota',
+        year: '2024',
+        color: '',
+        set col(color) {
+            this.color = color
+        },
+        set newProp(property) {
+            this.type = property
+        },
+        set setYear(year) {
+            this.year = year
+        }
+    };
+
+    car.col = 'Black';
+    car.newProp = 'Sedan'
+    car.setYear = '2020'
+
+    console.log(car);
+
+*/
+
+const car = {type:"Fiat", model:"500", color:"white"};
+
+
+// Prevents adding object properties
+Object.preventExtensions(car);
+
+// Returns true if properties can be added to an object
+console.log(Object.isExtensible(car));
+
+// Prevents adding and deleting object properties
+Object.seal(car)
+
+// Returns true if object is sealed
+console.log(Object.isSealed(car));
+
+// Prevents any changes to an object
+Object.freeze(car);
+
+// Returns true if object is frozen
+console.log(Object.isFrozen(car));
+
+/* --------------------------------------------------------------------- */
+
+// Refer from the object below:
+
+const restaurantOrder = {
+    "orderId": "ORD-2024-789456",
+    "orderDate": "2024-10-07T14:32:18Z",
+    "status": "preparing",
+    "customer": {
+      "customerId": "CUST-00123",
+      "name": "Maria Santos",
+      "email": "maria.santos@email.com",
+      "phone": "+63 917 123 4567",
+      "loyaltyPoints": 245,
+      "address": {
+        "street": "123 Mabini Street",
+        "barangay": "San Roque",
+        "city": "Antipolo",
+        "province": "Rizal",
+        "postalCode": "1870",
+        "coordinates": {
+          "latitude": 14.5836,
+          "longitude": 121.1756
+        }
+      }
+    },
+    "items": [
+      {
+        "itemId": "ITEM-001",
+        "name": "Chicken Adobo",
+        "quantity": 2,
+        "price": 180.00,
+        "customizations": {
+          "spiceLevel": "medium",
+          "addOns": ["extra rice", "atchara"],
+          "specialInstructions": "Less soy sauce please"
+        },
+        "nutritionInfo": {
+          "calories": 450,
+          "protein": "32g",
+          "carbs": "28g",
+          "fat": "22g"
+        }
+      },
+      {
+        "itemId": "ITEM-002",
+        "name": "Halo-Halo",
+        "quantity": 1,
+        "price": 120.00,
+        "customizations": {
+          "toppings": ["leche flan", "ube ice cream", "pinipig"],
+          "extraMilk": true
+        }
+      }
+    ],
+    "payment": {
+      "method": "credit_card",
+      "cardDetails": {
+        "last4Digits": "4532",
+        "cardType": "Visa",
+        "expiryMonth": 12,
+        "expiryYear": 2026
+      },
+      "subtotal": 480.00,
+      "tax": 57.60,
+      "deliveryFee": 50.00,
+      "discount": {
+        "code": "WELCOME10",
+        "amount": 48.00,
+        "type": "percentage"
+      },
+      "total": 539.60,
+      "currency": "PHP"
+    },
+    "delivery": {
+      "estimatedTime": "2024-10-07T15:15:00Z",
+      "driver": {
+        "driverId": "DRV-456",
+        "name": "Juan Dela Cruz",
+        "phone": "+63 918 987 6543",
+        "vehicle": {
+          "type": "motorcycle",
+          "plateNumber": "ABC-1234",
+          "color": "red"
+        },
+        "rating": 4.8,
+        "totalDeliveries": 1247
+      },
+      "trackingUrl": "https://track.delivery.com/ORD-2024-789456",
+      "deliveryStatus": "assigned"
+    },
+    "restaurant": {
+      "restaurantId": "REST-089",
+      "name": "Lola's Kitchen",
+      "branch": "Antipolo Main",
+      "contact": "+63 2 8123 4567",
+      "operatingHours": {
+        "monday": {"open": "10:00", "close": "22:00"},
+        "tuesday": {"open": "10:00", "close": "22:00"},
+        "sunday": {"open": "11:00", "close": "21:00"}
+      },
+      "ratings": {
+        "average": 4.6,
+        "totalReviews": 2341,
+        "breakdown": {
+          "5star": 1456,
+          "4star": 623,
+          "3star": 187,
+          "2star": 52,
+          "1star": 23
+        }
+      }
+    },
+    "metadata": {
+      "createdBy": "mobile-app",
+      "appVersion": "3.2.1",
+      "platform": "iOS",
+      "sessionId": "sess_xyz789abc123",
+      "tags": ["first-time-customer", "promo-applied", "peak-hours"]
+    }
+  };
+
+/*
+14. Perform Object Destructuring on restaurantOrder Object.
+    Then print the orderId, customerId, addOns, itemId, cardType, driverId, plateNumber, trackingUrl, restaurantId, totalReviews, and platform.
+    Clue: 'First Degree' properties lang po kasama sa pag-destructure.
+*/
+
+/*
+15. Perform string destructuring on the customer's name.
+*/
+
+// Refer from the array below:
+
+const techCompanyEmployees = [
+    {
+      "employeeId": "EMP-001",
+      "name": "Sarah Johnson",
+      "department": "Engineering",
+      "position": "Senior Software Engineer",
+      "salary": 95000,
+      "hireDate": "2019-03-15",
+      "skills": ["Flutter", "Dart", "Firebase", "GraphQL", "MongoDB"],
+      "projects": [
+        {
+          "projectId": "PROJ-101",
+          "name": "Mobile Banking App",
+          "role": "Lead Developer",
+          "status": "completed",
+          "duration": {"start": "2023-01-10", "end": "2023-08-20"}
+        },
+        {
+          "projectId": "PROJ-205",
+          "name": "E-commerce Platform",
+          "role": "Backend Developer",
+          "status": "ongoing",
+          "duration": {"start": "2023-09-01", "end": null}
+        }
+      ],
+      "performance": {
+        "rating": 4.8,
+        "lastReview": "2024-06-15",
+        "goals": ["Lead team of 5", "Complete certification", "Mentor juniors"]
+      }
+    },
+    {
+      "employeeId": "EMP-002",
+      "name": "Michael Chen",
+      "department": "Design",
+      "position": "UI/UX Designer",
+      "salary": 72000,
+      "hireDate": "2020-07-22",
+      "skills": ["Figma", "Adobe XD", "Prototyping", "User Research", "Wireframing"],
+      "projects": [
+        {
+          "projectId": "PROJ-150",
+          "name": "Dashboard Redesign",
+          "role": "Lead Designer",
+          "status": "completed",
+          "duration": {"start": "2023-05-01", "end": "2023-07-30"}
+        }
+      ],
+      "performance": {
+        "rating": 4.5,
+        "lastReview": "2024-05-20",
+        "goals": ["Design system overhaul", "A/B testing implementation"]
+      }
+    },
+    {
+      "employeeId": "EMP-003",
+      "name": "Priya Sharma",
+      "department": "Product",
+      "position": "Product Manager",
+      "salary": 105000,
+      "hireDate": "2018-11-05",
+      "skills": ["Agile", "Scrum", "Product Strategy", "Data Analysis", "Roadmapping"],
+      "projects": [
+        {
+          "projectId": "PROJ-205",
+          "name": "E-commerce Platform",
+          "role": "Product Owner",
+          "status": "ongoing",
+          "duration": {"start": "2023-09-01", "end": null}
+        },
+        {
+          "projectId": "PROJ-189",
+          "name": "Customer Portal",
+          "role": "Product Manager",
+          "status": "planning",
+          "duration": {"start": "2024-11-01", "end": null}
+        }
+      ],
+      "performance": {
+        "rating": 4.9,
+        "lastReview": "2024-07-10",
+        "goals": ["Launch 3 major features", "Improve user retention by 15%"]
+      }
+    },
+    {
+      "employeeId": "EMP-004",
+      "name": "Carlos Rodriguez",
+      "department": "Engineering",
+      "position": "DevOps Engineer",
+      "salary": 88000,
+      "hireDate": "2021-02-18",
+      "skills": ["Docker", "Kubernetes", "AWS", "CI/CD", "Terraform", "Jenkins"],
+      "projects": [
+        {
+          "projectId": "PROJ-220",
+          "name": "Infrastructure Migration",
+          "role": "DevOps Lead",
+          "status": "ongoing",
+          "duration": {"start": "2024-01-15", "end": null}
+        }
+      ],
+      "performance": {
+        "rating": 4.6,
+        "lastReview": "2024-04-25",
+        "goals": ["Reduce deployment time by 50%", "Automate testing pipeline"]
+      }
+    },
+    {
+      "employeeId": "EMP-005",
+      "name": "Emma Williams",
+      "department": "Marketing",
+      "position": "Digital Marketing Manager",
+      "salary": 68000,
+      "hireDate": "2022-09-10",
+      "skills": ["SEO", "Content Marketing", "Google Analytics", "Social Media", "Email Marketing"],
+      "projects": [
+        {
+          "projectId": "PROJ-234",
+          "name": "Q4 Campaign Launch",
+          "role": "Campaign Manager",
+          "status": "ongoing",
+          "duration": {"start": "2024-09-01", "end": "2024-12-31"}
+        }
+      ],
+      "performance": {
+        "rating": 4.3,
+        "lastReview": "2024-08-15",
+        "goals": ["Increase web traffic by 30%", "Launch influencer program"]
+      }
+    },
+    {
+      "employeeId": "EMP-006",
+      "name": "David Kim",
+      "department": "Engineering",
+      "position": "Junior Developer",
+      "salary": 55000,
+      "hireDate": "2023-06-01",
+      "skills": ["JavaScript", "React", "Node.js", "Git"],
+      "projects": [
+        {
+          "projectId": "PROJ-205",
+          "name": "E-commerce Platform",
+          "role": "Frontend Developer",
+          "status": "ongoing",
+          "duration": {"start": "2024-03-15", "end": null}
+        }
+      ],
+      "performance": {
+        "rating": 4.0,
+        "lastReview": "2024-09-05",
+        "goals": ["Complete React certification", "Contribute to 5 major features"]
+      }
+    }
+  ];
+
+
+/*
+16. Perform destructuring on EMP-005 by printing her skills set. (Print only the first, fourth, and fifth skills on the list.)
+*/
+
+/*
+17. Using the rest property, print EMP-001's first, second, and third skills set.
+*/
+
+/*
+18. Swap the variables' values.
+let x = 1, y = 2, z= 3;
+*/
+
+/*
+19. From restaurantOrder object, perform Object Property Alias on its properties and print any values using the alias.
+*/
+
+/*
+20. Using the techCompanyEmployees array, pick up values from all its index location and assign position values.
+*/
+
+// Refer to the object constructor below
+function Vehicle(model, year, color, mileage, price) {
+    this.model = model;
+    this.year = year;
+    this.color = color;
+    this.mileage = mileage;
+    this.price = price;
+}
+
+/*
+21. Using JavaScript prototype property, add a new method to the Vehicle object constructor.
+*/
+
+/*
+22. Create a getter for all the Vehicle object's properties.
+*/
+
+/*
+23. Create a setter for all the Vehicle object's properties.
+*/
+
+/*
+24. Create an instance of Vehicle object and perform JavaScript Object Protection by disabling any modifications on the object. Verify if any any modifications are disabled.
+*/
+
