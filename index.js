@@ -1230,52 +1230,49 @@ Refer to the object constructor below
 /*
 23. Create a setter for all the Vehicle object's properties.
 */
-    const car = {
-    model: "Honda Civic", 
-    year: 2021, 
-    color: "Black", 
-    mileage: 25000, 
-    price: 900000,
-    get carModel() {
-      return `The Model of the car is ${this.model}`
-    },
-    get carYear() {
-      return `Release year of the car is ${this.year}`
-    },
-    get carColor() {
-      return `The color of the car is ${this.color}`
-    },
-    get carMileage() {
-      return `The mileage of the car is ${this.mileage}`
-    },
-    get carPrice() {
-      return `The price of the car is ${this.price}`
-    },
-    set mdl(model) {
-      this.model = model
-    },
-    set yr(year) {
-      this.year = year
-    },
-    set clr(color) {
-      this.color = color
-    },
-    set mlg(mileage) {
-      this.mileage = mileage
-    },
-    set prc(price) {
-      this.price = price
-    }
-  }
+  //   const car = {
+  //   model: "Honda Civic", 
+  //   year: 2021, 
+  //   color: "Black", 
+  //   mileage: 25000, 
+  //   price: 900000,
+  //   get carModel() {
+  //     return `The Model of the car is ${this.model}`
+  //   },
+  //   get carYear() {
+  //     return `Release year of the car is ${this.year}`
+  //   },
+  //   get carColor() {
+  //     return `The color of the car is ${this.color}`
+  //   },
+  //   get carMileage() {
+  //     return `The mileage of the car is ${this.mileage}`
+  //   },
+  //   get carPrice() {
+  //     return `The price of the car is ${this.price}`
+  //   },
+  //   set mdl(model) {
+  //     this.model = model
+  //   },
+  //   set yr(year) {
+  //     this.year = year
+  //   },
+  //   set clr(color) {
+  //     this.color = color
+  //   },
+  //   set mlg(mileage) {
+  //     this.mileage = mileage
+  //   },
+  //   set prc(price) {
+  //     this.price = price
+  //   }
+  // }
 
-  car.mdl = 'City';
-  car.yr = '2020';
+  // car.mdl = 'City';
+  // car.yr = '2020';
 
-  console.log(car.carModel);
-  console.log(car.carYear);
-  
-  
-
+  // console.log(car.carModel);
+  // console.log(car.carYear);
 
 /*---------------------------------------------------- 23 ---------------------------------------------------------------*/
 
