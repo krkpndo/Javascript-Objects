@@ -734,30 +734,31 @@ yung JSON string para magamit back to normal, na more understandable sa code mis
 
 */
 
-const car = {type:"Fiat", model:"500", color:"white"};
+// const car = {type:"Fiat", model:"500", color:"white"};
 
 
-// Prevents adding object properties
-Object.preventExtensions(car);
+// // Prevents adding object properties
+// Object.preventExtensions(car);
 
-// Returns true if properties can be added to an object
-console.log(Object.isExtensible(car));
+// // Returns true if properties can be added to an object
+// console.log(Object.isExtensible(car));
 
-// Prevents adding and deleting object properties
-Object.seal(car)
+// // Prevents adding and deleting object properties
+// Object.seal(car)
 
-// Returns true if object is sealed
-console.log(Object.isSealed(car));
+// // Returns true if object is sealed
+// console.log(Object.isSealed(car));
 
-// Prevents any changes to an object
-Object.freeze(car);
+// // Prevents any changes to an object
+// Object.freeze(car);
 
-// Returns true if object is frozen
-console.log(Object.isFrozen(car));
+// // Returns true if object is frozen
+// console.log(Object.isFrozen(car));
 
-/* --------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------------------- */
 
-// Refer from the object below:
+/*
+Refer from the object below:
 
 const restaurantOrder = {
     "orderId": "ORD-2024-789456",
@@ -877,15 +878,42 @@ const restaurantOrder = {
     }
   };
 
-/*
+
 14. Perform Object Destructuring on restaurantOrder Object.
     Then print the orderId, customerId, addOns, itemId, cardType, driverId, plateNumber, trackingUrl, restaurantId, totalReviews, and platform.
     Clue: 'First Degree' properties lang po kasama sa pag-destructure.
-*/
+
+
+    const { orderId, customer, items, payment, delivery, restaurant, metadata } = restaurantOrder;
+
+    const customerId = customer.customerId;
+    const itemId = items[0].itemId;
+    const addOns = items[0].customizations.addOns;
+    const cardType = payment.cardDetails.cardType;
+    const driverId = delivery.driver.driverId;
+    const plateNumber = delivery.driver.vehicle.plateNumber;
+    const trackingUrl = delivery.trackingUrl;
+    const restaurantId = restaurant.restaurantId;
+    const totalReviews = restaurant.ratings.totalReviews;
+    const platform = metadata.platform;
+
+    console.log("Order ID:", orderId);
+    console.log("Customer ID:", customerId);
+    console.log("Item ID:", itemId);
+    console.log("Add-ons:", addOns);
+    console.log("Card Type:", cardType);
+    console.log("Driver ID:", driverId);
+    console.log("Plate Number:", plateNumber);
+    console.log("Tracking URL:", trackingUrl);
+    console.log("Restaurant ID:", restaurantId);
+    console.log("Total Reviews:", totalReviews);
+    console.log("Platform:", platform);
+
+    ------------------------------------------------------ 14 -------------------------------------------------------- */
 
 /*
 15. Perform string destructuring on the customer's name.
-*/
+
 
 // Refer from the array below:
 
@@ -1044,29 +1072,97 @@ const techCompanyEmployees = [
     }
   ];
 
+    const { name } = techCompanyEmployees[0];
+    const [firstLetter, secondLetter, thirdLetter, ...remainingLetters] = name;
+
+    console.log("Employee's Name:", name);
+    console.log("First Letter:", firstLetter);
+    console.log("Second Letter:", secondLetter);
+    console.log("Third Letter:", thirdLetter);
+    console.log("Remaining Letters:", remainingLetters.join(""));
+
+    ---------------------------------------------------- 15 ---------------------------------------------------------------*/
 
 /*
 16. Perform destructuring on EMP-005 by printing her skills set. (Print only the first, fourth, and fifth skills on the list.)
-*/
 
+    let skills;
+
+    for (const emp of techCompanyEmployees) {
+      if (emp.employeeId == "EMP-005") {
+        skills = emp.skills;
+        break;
+      }
+    }
+
+    const [firstSkill, , , fourthSkill, fifthSkill] = skills;
+    console.log(`EMP-005 Skills: ${firstSkill}, ${fourthSkill}, ${fifthSkill}`);
+
+    ---------------------------------------------------- 16 ---------------------------------------------------------------*/
 /*
 17. Using the rest property, print EMP-001's first, second, and third skills set.
-*/
+
+    const emp1 = techCompanyEmployees.find(emp => emp.employeeId == "EMP-001");
+
+    const [firstSkill, secondSkill, thirdSkill, ...otherSkills] = emp1.skills;
+
+    console.log("First Skill:", firstSkill);
+    console.log("Second Skill:", secondSkill);
+    console.log("Third Skill:", thirdSkill);
+
+    ---------------------------------------------------- 17 ---------------------------------------------------------------*/
 
 /*
 18. Swap the variables' values.
 let x = 1, y = 2, z= 3;
-*/
+
+    let x = 1, y = 2, z = 3;
+    [x, y, z] = [z, x, y];
+
+    console.log("x:", x);
+    console.log("y:", y);
+    console.log("z:", z);
+    
+    ---------------------------------------------------- 18 ---------------------------------------------------------------*/
 
 /*
 19. From restaurantOrder object, perform Object Property Alias on its properties and print any values using the alias.
-*/
+
+
+    const restaurantOrder = {
+      orderId: "ORD-2025-001",
+      customerName: "John Doe",
+      items: ["Burger", "Fries", "Coke"],
+      totalAmount: 299,
+      status: "Preparing"
+    };
+
+    const {
+      orderId: id,
+      customerName: name,
+      totalAmount: amount
+    } = restaurantOrder;
+
+    console.log("Order ID:", id);
+    console.log("Customer Name:", name);
+    console.log("Total Amount:", amount);
+
+    ---------------------------------------------------- 19 ---------------------------------------------------------------*/
 
 /*
 20. Using the techCompanyEmployees array, pick up values from all its index location and assign position values.
-*/
 
-// Refer to the object constructor below
+    const positions = [];
+
+    for (const employee of techCompanyEmployees) {
+      positions.push(employee.position);
+    }
+
+    console.log("All Employee Positions:", positions);
+    
+    ---------------------------------------------------- 20 ---------------------------------------------------------------*/
+
+/* Refer to the object constructor below
 function Vehicle(model, year, color, mileage, price) {
     this.model = model;
     this.year = year;
@@ -1075,19 +1171,69 @@ function Vehicle(model, year, color, mileage, price) {
     this.price = price;
 }
 
-/*
 21. Using JavaScript prototype property, add a new method to the Vehicle object constructor.
-*/
 
+
+    Vehicle.prototype.displayInfo = function() {
+        console.log(`Model: ${this.model}, Year: ${this.year}, Color: ${this.color}, Mileage: ${this.mileage} km, Price: ₱${this.price}`);
+    };
+
+    const car1 = new Vehicle("Toyota Vios", 2022, "Silver", 15000, 750000);
+    car1.displayInfo();
+
+    ---------------------------------------------------- 21 ---------------------------------------------------------------*/
 /*
 22. Create a getter for all the Vehicle object's properties.
-*/
+
+
+    Object.defineProperty(Vehicle.prototype, "details", {
+        get: function() {
+            return `Model: ${this.model}, Year: ${this.year}, Color: ${this.color}, Mileage: ${this.mileage} km, Price: ₱${this.price}`;
+        }
+    });
+
+    const car1 = new Vehicle("Honda Civic", 2021, "Black", 25000, 900000);
+    console.log(car1.details);
+
+    ---------------------------------------------------- 22 ---------------------------------------------------------------*/
 
 /*
 23. Create a setter for all the Vehicle object's properties.
-*/
+
+    Object.defineProperty(Vehicle.prototype, "details", {
+        set: function(newDetails) {
+            this.model = newDetails.model;
+            this.year = newDetails.year;
+            this.color = newDetails.color;
+            this.mileage = newDetails.mileage;
+            this.price = newDetails.price;
+        }
+    });
+
+    const car1 = new Vehicle("Toyota Vios", 2020, "White", 30000, 650000);
+
+    car1.details = {
+        model: "Mitsubishi Mirage",
+        year: 2023,
+        color: "Red",
+        mileage: 5000,
+        price: 800000
+    };
+
+    console.log(car1);
+
+    ---------------------------------------------------- 23 ---------------------------------------------------------------*/
 
 /*
 24. Create an instance of Vehicle object and perform JavaScript Object Protection by disabling any modifications on the object. Verify if any any modifications are disabled.
-*/
 
+    const car1 = new Vehicle("Toyota Fortuner", 2022, "Black", 15000, 1800000);
+    Object.freeze(car1);
+
+    car1.color = "Red";
+    car1.price = 999999;
+
+    console.log(car1);
+    console.log("Is object frozen?", Object.isFrozen(car1));
+
+    ---------------------------------------------------- 24 ---------------------------------------------------------------*/
